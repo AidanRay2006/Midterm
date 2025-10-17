@@ -52,7 +52,7 @@ public class PlayerBike : MonoBehaviour
 
     public bool Grounded()
     {
-        if (Physics.Raycast(transform.position, -transform.up, 0.5f))
+        if (Physics.Raycast(transform.position, -transform.up, transform.localScale.x/2))
         {
             return true;
         }
@@ -60,7 +60,7 @@ public class PlayerBike : MonoBehaviour
     }
     private bool Flipped()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, 0.5f) && transform.eulerAngles.z != 0)
+        if (Physics.Raycast(transform.position, Vector3.down, transform.localScale.x / 2) && transform.eulerAngles.z != 0)
         {
             return true;
         }
