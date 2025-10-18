@@ -8,6 +8,7 @@ public class PlayerBike : MonoBehaviour
     public float speed = 0f;
     public float maxSpeed = 55f;
     public float acc = 2f;
+    public float strafeAcc = 2f;
 
     //private variables
     private Rigidbody rb;
@@ -27,10 +28,14 @@ public class PlayerBike : MonoBehaviour
         speed = rb.velocity.x;
         onGround = Grounded();
         flip = Flipped();
+
+        //get the bike upright
         if (flip)
         {
             transform.eulerAngles = Vector3.zero;
         }
+
+        //makes it easier to go faster
         if(speed < 16.5f)
         {
             acc = 35f;
@@ -39,6 +44,8 @@ public class PlayerBike : MonoBehaviour
         {
             acc = 25f;
         }
+
+        //accelerate regularly
         if (Input.GetKey(KeyCode.Period) && speed < maxSpeed && onGround)
         {
             rb.AddForce(Vector3.right * acc, ForceMode.Acceleration);
@@ -48,11 +55,21 @@ public class PlayerBike : MonoBehaviour
             rb.velocity = new Vector3(maxSpeed, 0);
         }
 
+        //move up and down
+        if (speed > 0 && Input.GetKey(KeyCode.W) && onGround)
+        {
+            rb.AddForce(Vector3.forward * strafeAcc, ForceMode.Force);
+        }
+        if (speed > 0 && Input.GetKey(KeyCode.S) && onGround)
+        {
+            rb.AddForce(Vector3.back * strafeAcc, ForceMode.Force);
+        }
+
     }
 
     public bool Grounded()
     {
-        if (Physics.Raycast(transform.position, -transform.up, transform.localScale.x/2))
+        if (Physics.Raycast(transform.position, -transform.up, transform.localScale.x / 2))
         {
             return true;
         }
