@@ -66,10 +66,14 @@ public class PlayerBike : MonoBehaviour
         }
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        transform.position = new Vector3(-425.2f, transform.position.y, transform.position.z);
+    }
 
     public bool Grounded()
     {
-        if (Physics.Raycast(transform.position, -transform.up, transform.localScale.x / 2))
+        if (Physics.Raycast(transform.position, -transform.up, (transform.localScale.x / 2) + 0.02f))
         {
             return true;
         }
@@ -77,7 +81,7 @@ public class PlayerBike : MonoBehaviour
     }
     private bool Flipped()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, transform.localScale.x / 2) && transform.eulerAngles.z != 0)
+        if (Physics.Raycast(transform.position, Vector3.down, (transform.localScale.x / 2) + 0.02f) && transform.eulerAngles.z != 0)
         {
             return true;
         }
