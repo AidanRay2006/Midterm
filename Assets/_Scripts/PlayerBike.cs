@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,12 +17,16 @@ public class PlayerBike : MonoBehaviour
     public float tempIncreaseRate = 20f;
     public float tempDecreaseRate = 10f;
     public float maxTemp = 1000f;
+    public TextMeshProUGUI tempText;
+    public TextMeshProUGUI timerText;
 
     //private variables
     private Rigidbody rb;
     private bool onGround;
     private bool flip;
     private bool recharge;
+    private int lap;
+    private float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +34,8 @@ public class PlayerBike : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         speed = 0;
         recharge = false;
+        lap = 0;
+        timer = 0;
     }
 
     // Update is called once per frame
@@ -116,12 +123,23 @@ public class PlayerBike : MonoBehaviour
         {
             recharge = false;
         }
+
+        timer += Time.deltaTime;
+
+        //update the temp gauge on the UI
+        tempText.text = $"Temp: {temp}/{maxTemp}";
+        //formatting code thanks to Gemini
+        timerText.text = $"{(int)timer / 60}:{string.Format("{0:F2}", timer%60)}";
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Portal"))
         {
-            transform.position = new Vector3(-425.2f, transform.position.y, transform.position.z);
+            lap++;
+            if (lap < 2)
+            {
+                transform.position = new Vector3(-425.2f, transform.position.y, transform.position.z);
+            }
         }
         if (other.CompareTag("Mud"))
         {
