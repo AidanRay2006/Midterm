@@ -153,7 +153,7 @@ public class PlayerBike : MonoBehaviour
 
     public bool Grounded()
     {
-        if (Physics.Raycast(transform.position, -transform.up, (transform.localScale.x / 2) + 0.02f))
+        if (Physics.Raycast(transform.position, -transform.up, (transform.localScale.x / 2) + 0.09f))
         {
             return true;
         }
@@ -161,7 +161,7 @@ public class PlayerBike : MonoBehaviour
     }
     private bool Flipped()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, (transform.localScale.x / 2) + 0.02f) && transform.eulerAngles.z != 0)
+        if (Physics.Raycast(transform.position, Vector3.down, (transform.localScale.x / 2) + 0.09f) && transform.eulerAngles.z != 0)
         {
             return true;
         }
