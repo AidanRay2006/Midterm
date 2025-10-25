@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -133,6 +134,7 @@ public class PlayerBike : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        //manages the laps
         if (other.CompareTag("Portal"))
         {
             lap++;
@@ -141,13 +143,28 @@ public class PlayerBike : MonoBehaviour
                 transform.position = new Vector3(-425.2f, transform.position.y, transform.position.z);
             }
         }
+
+        //slows down when it goes in mud
         if (other.CompareTag("Mud"))
         {
             rb.velocity = new Vector3(rb.velocity.x - 20, rb.velocity.y, rb.velocity.z);
         }
+
+        //resets the temp gauge when it goes through an arrow
         if (other.CompareTag("Arrow"))
         {
             temp = 0;
+        }
+
+        //gives it "friction" on the ground, but prevents it from massively slowing down
+        //in the air
+        if (other.CompareTag("TrackPart"))
+        {
+            rb.drag = 0.7f;
+        }
+        else
+        {
+            rb.drag = 0.45f;
         }
     }
 
