@@ -8,6 +8,7 @@ TagManager:
   - Mud
   - Arrow
   - TrackPart
+  - EndZone
   layers:
   - Default
   - TransparentFX

@@ -928,15 +928,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1532256983}
-        m_TargetAssemblyTypeName: StartButton, Assembly-CSharp
-        m_MethodName: onButtonClick
-        m_Mode: 1
+        m_TargetAssemblyTypeName: NextButton, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1532256981
@@ -986,7 +986,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1532256978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82e07202197114747aef0b302f6e84a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f5d4c75d7eb85e47bfff76fa03edbb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1767990805

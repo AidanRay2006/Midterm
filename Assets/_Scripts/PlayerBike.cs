@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerBike : MonoBehaviour
@@ -18,16 +19,16 @@ public class PlayerBike : MonoBehaviour
     public float tempIncreaseRate = 20f;
     public float tempDecreaseRate = 10f;
     public float maxTemp = 1000f;
-    public TextMeshProUGUI tempText;
-    public TextMeshProUGUI timerText;
+    public float timer;
+    public bool timing;
+    public bool recharge;
+    public bool endGame;
 
     //private variables
     private Rigidbody rb;
     private bool onGround;
     private bool flip;
-    private bool recharge;
     private int lap;
-    private float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,8 @@ public class PlayerBike : MonoBehaviour
         recharge = false;
         lap = 0;
         timer = 0;
+        timing = true;
+        endGame = false;
     }
 
     // Update is called once per frame
@@ -109,7 +112,7 @@ public class PlayerBike : MonoBehaviour
         }
 
         //decrease the gauge
-        if (!Input.GetKey(KeyCode.Comma))
+        if (!Input.GetKey(KeyCode.Comma) && Time.timeScale != 0)
         {
             temp -= tempDecreaseRate;
         }
@@ -125,12 +128,10 @@ public class PlayerBike : MonoBehaviour
             recharge = false;
         }
 
-        timer += Time.deltaTime;
-
-        //update the temp gauge on the UI
-        tempText.text = $"Temp: {temp}/{maxTemp}";
-        //formatting code thanks to Gemini
-        timerText.text = $"{(int)timer / 60}:{string.Format("{0:F2}", timer%60)}";
+        if (timing)
+        {
+            timer += Time.deltaTime;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -138,9 +139,13 @@ public class PlayerBike : MonoBehaviour
         if (other.CompareTag("Portal"))
         {
             lap++;
-            if (lap < 2)
+            if (lap < 1)
             {
                 transform.position = new Vector3(-425.2f, transform.position.y, transform.position.z);
+            }
+            else
+            {
+                timing = false;
             }
         }
 
@@ -166,11 +171,18 @@ public class PlayerBike : MonoBehaviour
         {
             rb.drag = 0.45f;
         }
+
+        //when the game is over
+        if (other.CompareTag("EndZone"))
+        {
+            //end game and go to the in between menu
+            endGame = true;
+        }
     }
 
     public bool Grounded()
     {
-        if (Physics.Raycast(transform.position, -transform.up, (transform.localScale.x / 2) + 0.09f))
+        if (Physics.Raycast(transform.position, -transform.up, (transform.localScale.x / 2) + 0.07f))
         {
             return true;
         }
@@ -178,7 +190,7 @@ public class PlayerBike : MonoBehaviour
     }
     private bool Flipped()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, (transform.localScale.x / 2) + 0.09f) && transform.eulerAngles.z != 0)
+        if (Physics.Raycast(transform.position, Vector3.down, (transform.localScale.x / 2) + 0.07f) && transform.eulerAngles.z != 0)
         {
             return true;
         }
