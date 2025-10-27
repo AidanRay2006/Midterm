@@ -23,7 +23,7 @@ public class CameraFollow : MonoBehaviour
     {
         //gets the position of the object it's following every frame
         Vector3 followPos = new Vector3(follow.transform.position.x, transform.position.y, transform.position.z);
-        
+
         //the camera only follows the object if it is within certain bounds
         if (transform.position.x < max)
         {

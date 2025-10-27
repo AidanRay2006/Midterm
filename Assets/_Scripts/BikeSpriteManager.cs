@@ -16,8 +16,9 @@ public class BikeSpriteManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = 0;
+        player = CharacterManager.player;
         rb = bike.GetComponent<Rigidbody>();
+        right1[0].SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,6 +27,6 @@ public class BikeSpriteManager : MonoBehaviour
         up[player].SetActive(Input.GetKey(KeyCode.W));
         down[player].SetActive(Input.GetKey(KeyCode.S));
 
-        right1[player].SetActive(!up[player].activeSelf || !down[player].activeSelf);
+        right1[player].SetActive(!(up[player].activeSelf || down[player].activeSelf));
     }
 }
