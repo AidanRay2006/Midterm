@@ -23,8 +23,10 @@ public class PlayerBike : MonoBehaviour
     public bool timing;
     public bool recharge;
     public bool endGame;
+    public AudioSource sound;
 
     //private variables
+    private float topAcc;
     private Rigidbody rb;
     private bool onGround;
     private bool flip;
@@ -40,6 +42,42 @@ public class PlayerBike : MonoBehaviour
         timer = 0;
         timing = true;
         endGame = false;
+        maxTemp = 1000;
+        strafeAcc = 25;
+
+        if (CharacterManager.player == 0)
+        {
+            //default settings
+            maxSpeed = 22;
+            acc = 25;
+            maxTempSpeed = 30;
+            tempAcc = 35;
+            tempIncreaseRate = 7;
+            tempDecreaseRate = 3;
+        }
+        else if(CharacterManager.player == 1)
+        {
+            //focus temp
+            maxSpeed = 21;
+            acc = 24;
+            maxTempSpeed = 27;
+            tempAcc = 34;
+            tempIncreaseRate = 4.5f;
+            tempDecreaseRate = 3.3f;
+        }
+        else
+        {
+            //focus speed
+            maxSpeed = 25;
+            acc = 26.5f;
+            maxTempSpeed = 40;
+            tempAcc = 36;
+            tempIncreaseRate = 10;
+            tempDecreaseRate = 2.3f;
+        }
+        topAcc = acc;
+
+        sound.Play();
     }
 
     // Update is called once per frame
@@ -58,11 +96,11 @@ public class PlayerBike : MonoBehaviour
         //makes it easier to go faster
         if(speed < 16.5f)
         {
-            acc = 35f;
+            acc = topAcc + 10;
         }
         else
         {
-            acc = 25f;
+            acc = topAcc;
         }
 
         //accelerate regularly
@@ -132,6 +170,7 @@ public class PlayerBike : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -139,7 +178,7 @@ public class PlayerBike : MonoBehaviour
         if (other.CompareTag("Portal"))
         {
             lap++;
-            if (lap < 1)
+            if (lap < 2)
             {
                 transform.position = new Vector3(-425.2f, transform.position.y, transform.position.z);
             }
@@ -149,7 +188,7 @@ public class PlayerBike : MonoBehaviour
             }
         }
 
-        //slows down when it goes in mud
+        //slows down when it goes in mud or grass
         if (other.CompareTag("Mud"))
         {
             rb.velocity = new Vector3(rb.velocity.x - 20, rb.velocity.y, rb.velocity.z);

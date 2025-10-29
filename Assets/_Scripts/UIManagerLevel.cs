@@ -16,18 +16,30 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI endMessage;
     public TextMeshProUGUI timerMessage;
     public GameObject pauseMenu;
+    public AudioSource levelBGM;
+    public AudioSource winBGM;
+    public TextMeshProUGUI countdown;
+    public GameObject bike;
+    public AudioSource tickSound;
+    public float winTime;
 
     private PlayerBike bikeScript;
     private RectTransform tempTransform;
+    private int countdownTime;
 
     // Start is called before the first frame update
     void Start()
     {
-        bikeScript = FindObjectOfType<PlayerBike>();
+        bikeScript = bike.GetComponent<PlayerBike>();
         tempTransform = tempGauge.GetComponent<RectTransform>();
         tempTransform.localScale = new Vector3(0, tempTransform.localScale.y);
         endMessage.enabled = false;
         timerMessage.enabled = false;
+        winBGM.mute = true;
+        bikeScript.enabled = false;
+
+        //script provided by ChatGPT
+        StartCoroutine(CountdownCoroutine());
     }
 
     // Update is called once per frame
@@ -63,10 +75,13 @@ public class UIManager : MonoBehaviour
         //end game UI
         if (bikeScript.endGame)
         {
+            levelBGM.Pause();
+            winBGM.mute = false;
+
             endMessage.enabled = true;
             timerMessage.enabled = true;
             //the player wins
-            if (bikeScript.timer <= 120)
+            if (bikeScript.timer <= winTime)
             {
                 winImage.SetActive(true);
                 nextButton.SetActive(true);
@@ -85,5 +100,28 @@ public class UIManager : MonoBehaviour
             timerMessage.text = $"TIME: {(int)bikeScript.timer / 60}:{(bikeScript.timer % 60).ToString("00.00")}";
             endScreen.SetActive(true);
         }
+    }
+
+    //script provided by ChatGPT
+    private System.Collections.IEnumerator CountdownCoroutine()
+    {
+        countdownTime = 3;
+        while (countdownTime > 0)
+        {
+            tickSound.Play();
+            countdown.text = countdownTime.ToString();
+            yield return new WaitForSeconds(0.6f);
+            countdownTime--;
+        }
+        yield return new WaitForSeconds(0.61f);
+        tickSound.Play();
+        countdown.text = "GO!";
+
+        //start the scene now that the countdown has concluded
+        bikeScript.enabled = true;
+        levelBGM.Play();
+
+        yield return new WaitForSeconds(1f);
+        countdown.text = "";
     }
 }
