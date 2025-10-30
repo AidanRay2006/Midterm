@@ -1,84 +1,55 @@
 #### MCS 1643 README file
-# **Replace this Project Name**
+# **Midterm Project | Excitebike**
 
-#### Author: *Replace this with your name*
+#### Author: *Aidan Raye*
 
-##### Modified: *2024-09-06*
+##### Modified: *2025-10-30*
 
 <br>
 
-#### Questions for tutorial assignments: (remove this section for projects)
-**Which tutorial is this? **
-
-**1. Did you make any additions beyond the tutorial requirements? If so, what?**
-> &nbsp;
-><i>(let me know what to look for, any additional keys to use, etc.)</i>   
-> &nbsp;
-
-**2. Did anything give you particular trouble?
-> &nbsp;
-><i>(If something in your assignment doesn't work or you think part of the tutorial can be improved, explain here)</i>   
-> &nbsp;
-
 #### Questions for projects: (remove this section for tutorial assignments)
 **1. What are the controls to your game? How do we play?**   
-
-> &nbsp;
-><i>(art, music, etc. Just tell us where you got it, link it here)</i>   
-> &nbsp;
+> &nbsp; Press W to go up the track and S to go down. Press Period to accelerate, and use Comma to accelerate faster but increase the temp gauge
  
-
-
 **2. What creative additions/enhancements did you make? How can we find them?**   
-
-> &nbsp;
+> &nbsp; You can select a character at the beginning of the game that has different stats. It is selected right after you start from the main menu.
 ><i>(If you don't tell us how to experience them, we could easily miss them.)</i>   
 > &nbsp;
  
-
-
 **3. Any assets used that you didn't create yourself?**   
-
-> &nbsp;
+> &nbsp; Everything was created by me except for the sprites for the bikes, the title, the font, and the music. The bike sprite and title are from the original game, the font is from DaFont, and the music is from the original game and Mario Kart 8 Deluxe.
 ><i>(art, music, etc. Just tell us where you got it, link it here)</i>   
-> &nbsp;
- 
-
+> &nbsp; Sprites from the original game: https://www.spriters-resource.com/nes/excitebike/asset/21192/
+> Win music from the original: https://downloads.khinsider.com/game-soundtracks/album/excitebike-nes/06.%2520Winners%2520Podium%2520BGM.mp3
+> Level music from Mario Kart 8 Deluxe: https://downloads.khinsider.com/game-soundtracks/album/mario-kart-8-full-gamerip/3-005.%2520Excitebike%2520Arena%25E2%2580%258E.mp3
+> Font: https://www.dafont.com/pixel-3.font
+> Title from the original: https://www.steamgriddb.com/game/34870/logos
 
 **4. Did you receive help from anyone outside this class or from anyone in this class that is not in a group with you?**   
-
-> &nbsp;
+> &nbsp; I got code from a user on Unity Discussions
 ><i>(list their names and what they helped with)</i>   
-> &nbsp;
+> &nbsp; His name was Bragon89 and he provided a script for limiting frame rate, so that I could reduce the stress on my computer to record the video
  
 
 
 **5. Did you get help from any AI Code Assistants?**   
 
-> &nbsp;
+> &nbsp; Yes
 ><i>(Including things like Chat-GPT, Copilot, etc. Tell us which .cs file to look in for the citation and describe what you learned)</i>   
-> &nbsp;
+> &nbsp; Early on, I had an issue with making the bike slide across the ground and not roll. ChatGPT provided me with the solution to remove friction and use drag instead. ChatGPT also gave me a script to create a countdown at the beginning of each level.
+> Gemini helped create scripts for text formatting and a script to make an object persist throughout multiple scenes.
  
-
-
 **6. Did you get help from any online websites, videos, or tutorials?**   
-
-> &nbsp;
+> &nbsp; No
 ><i>(link them here)</i>   
 > &nbsp;
  
-
-
 **7. What trouble did you have with this project?**   
-
-> &nbsp;
+> &nbsp; I could not lower the strain on my GPU to record a viewable video
 ><i>(Even if you didn't complete the project, you can still get partial credit if you tell us about why it's incomplete.)</i>   
 > &nbsp;
  
-
-
 **8. Is there anything else we should know?**   
-
 > &nbsp;
 >*No answer given.*
 > &nbsp;
