@@ -5673,7 +5673,6 @@ MonoBehaviour:
   timing: 0
   recharge: 0
   endGame: 0
-  sound: {fileID: 1711150817}
 --- !u!65 &683633672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16687,7 +16686,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Continue
+  m_text: NEXT LEVEL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8d19822e2f230747bee9dc07ca39b41, type: 2}
   m_sharedMaterial: {fileID: -3316131494063638414, guid: c8d19822e2f230747bee9dc07ca39b41, type: 2}

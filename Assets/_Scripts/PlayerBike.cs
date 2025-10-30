@@ -23,7 +23,6 @@ public class PlayerBike : MonoBehaviour
     public bool timing;
     public bool recharge;
     public bool endGame;
-    public AudioSource sound;
 
     //private variables
     private float topAcc;
@@ -76,8 +75,6 @@ public class PlayerBike : MonoBehaviour
             tempDecreaseRate = 2.3f;
         }
         topAcc = acc;
-
-        sound.Play();
     }
 
     // Update is called once per frame

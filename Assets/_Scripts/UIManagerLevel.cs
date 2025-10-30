@@ -84,6 +84,7 @@ public class UIManager : MonoBehaviour
             if (bikeScript.timer <= winTime)
             {
                 winImage.SetActive(true);
+                loseImage.SetActive(false);
                 nextButton.SetActive(true);
                 menuButton.SetActive(false);
                 endMessage.text = "YOU WIN!";
@@ -92,6 +93,7 @@ public class UIManager : MonoBehaviour
             else
             {
                 loseImage.SetActive(true);
+                winImage.SetActive(false);
                 menuButton.SetActive(true);
                 nextButton.SetActive(false);
                 endMessage.text = "YOU LOSE...";
