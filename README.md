@@ -1,7 +1,7 @@
 #### MCS 1643 README file
 # **Midterm Project | Excitebike**
 
-#### Author: *Aidan Raye*
+#### Author: *Aidan Ray*
 
 ##### Modified: *2025-10-30*
 
